@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset=\"UTF-8\">
+		<title>CamServer</title>
+		<script>
+			var timer;
+			var tick = 0;
+			image = new Image();
+			reload = new Date();
+			reload = reload.getTime();
+			image.src = "image.jpg?nocache=" + reload;
+			
+			function refreshCam()
+			{
+				if(!focused)
+					return;
+
+				tick++;
+				if(tick > 3)
+					{restart = 1;} 
+				else 
+					{restart = 0;}
+					
+				if(image.complete)
+				{
+					tick = 0;
+					document.images["webcam"].src = image.src;
+					image = new Image();
+					reload = new Date();
+					reload = reload.getTime();
+					window.status = "";
+					image.src = "image.jpg?nocache=" + reload;
+				}
+				
+				if(restart)
+				{
+					tick = 0;
+					image = new Image();
+					reload = new Date();
+					reload = reload.getTime();
+					window.status = "";
+					image.src = "image.jpg?nocache=" + reload;
+				}
+				window.status = window.status + ".";
+				timer = Timer("refreshCam()", 500);
+			}
+
+			function Timer(callback, delay)
+			{
+				var timerId, start, remaining = delay;
+
+				this.pause = function()
+				{
+					window.clearTimeout(timerId);
+					remaining -= new Date() - start;
+				};
+
+				this.resume = function()
+				{
+					start = new Date();
+					window.clearTimeout(timerId);
+					timerId = window.setTimeout(callback, remaining);
+				};
+
+				this.resume();
+			}
+
+			var focused = true;
+			window.onfocus = function()
+			{
+				focused = true;
+				refreshCam();
+			};
+			window.onblur = function()
+			{
+				var cb = document.getElementById("bgCheck");
+				if(!cb.checked)
+					focused = false;
+			};
+
+			refreshCam();
+
+			function upMouseUp() {
+			 	var xhttp = new XMLHttpRequest();
+			 	xhttp.open("GET", "upUp", true);
+  				xhttp.send();
+			}
+			function upMouseDown() {
+			 	var xhttp = new XMLHttpRequest();
+			 	xhttp.open("GET", "upDown", true);
+  				xhttp.send();
+			}
+
+			function leftMouseUp() {
+			 	var xhttp = new XMLHttpRequest();
+			 	xhttp.open("GET", "leftUp", true);
+  				xhttp.send();
+			}
+			function leftMouseDown() {
+			 	var xhttp = new XMLHttpRequest();
+			 	xhttp.open("GET", "LeftDown", true);
+  				xhttp.send();
+			}
+
+			function rightMouseUp() {
+			 	var xhttp = new XMLHttpRequest();
+			 	xhttp.open("GET", "rightUp", true);
+  				xhttp.send();
+			}
+			function rightMouseDown() {
+			 	var xhttp = new XMLHttpRequest();
+			 	xhttp.open("GET", "rightDown", true);
+  				xhttp.send();
+			}
+
+			function downMouseUp() {
+			 	var xhttp = new XMLHttpRequest();
+			 	xhttp.open("GET", "downUp", true);
+  				xhttp.send();
+			}
+			function downMouseDown() {
+			 	var xhttp = new XMLHttpRequest();
+			 	xhttp.open("GET", "downDown", true);
+  				xhttp.send();
+			}
+
+		</script>
+	</head>
+	<body>
+		<img name="webcam" src="image.jpg" border=1><br>
+		Background: <input type="checkbox" id="bgCheck"><br>
+
+		<img alt="up" onmouseup="upMouseUp()" onmousedown="upMouseDown()" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAABQCAYAAACOEfKtAAAACXBIWXMAAAsSAAALEgHS3X78AAAB0klEQVR42u2bQU6DQBSGGxM3HsCl3sDEUjcepVepJsadJ6iegoWl0Tt03RPAxI1hT0hwBieNdkFseSBv+L7k3zQwtF+GzsxjmEwAAAAAAAAAAAAAAACgHx6qk5tVdjtbpYsoyWKbrU1uU/rk/rPYHeOOdeeM3lv0ai6mSfZkxRib6sCY+lzbxujEXb1/nEeJWVoJxRHi9lO4tlyb4+h1STa3+RQQtx/X5jxccZvN6WydvnQg7lfqa9hrhfZfdxats7eu5e3irmWvGUzP61XeT4kh9MQ+btum2zmEAaP65+gcWL6nKp2MtgePziqnONPEPA9Ano9ZqpJ3nZhLoUmyVApVKxa/PKuGFPed1BQGjlzbdh2jogDhKiUDlFenruIMf+qS3g1VoCuFaZj7xWI/epU9Ruv0XlBirEHgVkrerk05iVsNAnNJecIScw0CS2l5ghLLsAU2yBOSWIZ7C/9BnoDEPMxB5AB5LSWqGETiruW1kKhhGsNEmqUcxQTFxQTKWRRUKemrL+nzUInHmsOBB+tteyFbOwQksrlIpieyvU1uYGGDZdspjp8nssW37Yql7SZz18Zk9PjXHHwprPE1B3cMrzkAAAAAAAAAAAAAAAD0yxcUro1MEq6INQAAAABJRU5ErkJggg=="><br>
+		<img alt="left" onmouseup="leftMouseUp()" onmousedown="leftMouseDown()" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAABQCAYAAACOEfKtAAAACXBIWXMAAAsSAAALEgHS3X78AAAB9UlEQVR42u2bQUrDQBRAi+DGA7jUGwg2uvEovYoK4q4nUE+RhU3RO3TdEySDG8m+FOL8GKQGrTT5Ezsz78HflHTSPib8P38moxEAAAAAAAAAAAAAAAAMw111cDkrrpIsv0myIrWxtFHaWDdRNp+lco1cK9+J3tt5Zk7HWTG1YoyNascw8l0ZIzpxZ69vx+PMPFoJqw7i2rGSsWTMKOTZPzyx8a4grh0y5iRccYvF4cU8f3Ig7lvU97D3CkveszlK5sWLa3lfIfey9wxm5g0qb1NiCDNxiMd22+McQsKo/jn8TCxSVjjKtjtnZy9LnCQzD3sgrw6pE33LuidKRbJWrLxasTTLM30Rs+K++ywspt40Bjqubf+U1ySmrmMYLxoQn10VN/J6CqzqLs7e132z/NqVvL4CpRXmQ+2XupLXX2CR+iBw6UqegsClDwJLV/IUBJY+CFy7kqcgcB2+wHl+G7vA/o/wFokxPMI6SeQXiTEkEb0y5geJwZcx6oV0S2LwhbSTpdyGxOCXcs6aCY3E4JsJTttZVmL47SwaquG19OW3sKkU26YS25padSEb6z1nIUc7VLIyh4s0ZiLH2/QSCwcs+5c4dZ2ocsRXxormiG97xdL3kLmMMYqe5jWHphW29TUHuYbXHAAAAAAAAAAAAAAAAIblA3M4jUz+qXI9AAAAAElFTkSuQmCC">
+		<img alt="right" onmouseup="rightMouseUp()" onmousedown="rightMouseDown()" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAABQCAYAAACOEfKtAAAACXBIWXMAAAsSAAALEgHS3X78AAAB9klEQVR42u2bQU7CQBRAiYkbD+ASb2Ai4MajcBU0Me48AXqKLqRE78C6J2gnbkz3hKTOHwlRFhraP5Xfvpf8DSlT+jLl//mdDgYAAAAAAAAAAAAAAADQDvfVyfWiuBmn+e04LRIfmY/Sx2Yb5fazRI6RY+U7vfd2lbqLUVo8ejHOR3VgOPmujNE7cZdv7+ej1D15Cesa4vZjLWPJmL2Q5y946uNDQdx+yJjT7opbrU4ny/w5grgfEc7hz9UteS/ubLwsXmPL24Wcy5+zMzOvVXnfJXZhJrZx2/52O3chYVT/HDYTi5QVkbLtwdnZZImzrfOq4wg3N7fCUCqStWLts/LQ0OwLy7N6F7soHmJIlN9kpjFQc20bIiSfOBKdiQbEV1el/oXuMngEiaGLc/ylS2hJNRYYQ+Jkkc8s1H6JlsAIEhMLAjNNgcoSMwsCS22BihJLCwI3MQQqSdz0W+Ayv+uDwDi3cHN5Zm5h/SSiI89MEtEtY/TkWSljFAtpXXk2Cmm1pZyyPDNLOZVmQgR5ZpoJjdtZceQZamfRUNVKJm5OS5+HSjzWNL9fhgfrTWchWzsUJLK5SGcmsr1NL7GwwbJ5iRPqRJUtvjJWb7b47v03DptuMje3wojVgJBOibSb/nrNQY7hNQcAAAAAAAAAAAAAAIB2+QQdr41MT21xngAAAABJRU5ErkJggg=="><br>
+		<img alt="down" onmouseup="downMouseUp()" onmousedown="downMouseDown()" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAABQCAYAAACOEfKtAAADw0lEQVR4Xu2bPWgUURDH/7O5NIKgFiG5DdoIEgvB7AVEK20CbgJqqdgoKH612kSNCRba+kEUrERLFeIF0milCLlVsDCIlXIfIUUUBJtLbmTjiRdJ7nZ33rvc6Vw9/3nzfvzfvrm3bwn6ExEgkVrFUIBCEyhABSgkIJSrAxWgkIBQrg5UgEICQrk6UAEKCQjl6kAFKCQglKsDFaCQgFCuDlSAQgJCuTpQAQoJCOXqwH8C4Cg7A5ningrxAYA8ADsA9ADYWJ3fdwAlAB8BDhymFzO59BuMUkU4f7F8XR24O1vcRuCzBByvAoszoRIDDxl0952f/hxHaDJ2XQDump7rSi1Wxgh8AkCncEJlgB6UU87V94Pd88JcseVNB+hlC0cB3AKwJXa19QULAC4EvvvYcN666ZoG0MvlOmm++zYznbI5QSK+z11z54NMpmxznN+5mwLQmyxuQAc/AWOwGZMCYRpLdCQYTv+wPZ51gKHzMN8z2TR4f6wxja7SsG0nWgeYmcrfs71s13JZuJxzB3tP23ShVYDVDeORzQlEyH3M5sZiDWDYqnQuLs1a2G0jMFsRslBOdfTZanGsAezPFicIbHX5RCdJE4GfPhM9PnqkFYDhPwwH/MlAkxx9JvUjy6jQ9mA4/cVUQqttTH+2cIOAi6aLleRj4OZb370kybGa1rwDR9nxBor5BP9tTc/t73ylYCbda/oAwjjAgeeFvRXCK9s0kuR3GPtmhtzXSbRrtkomk4W5vGx+BKBx03lN5CPmkdxQ73UTuaw9A71s4SmAQ5GLZIwHQ+6VyPE1gd5U/jKYxmJonwW+ezhGfMNQ40vYyxY+AOhrOHJtQAKICeCFI84GvrszVm0Ngm0A/ApgU+wiY0BMCC8s6Vvgu5tj11ZHYAPgIoCOREVGgCiAF5a0FPhuKlFta4haC2BYZB2IQnhtAzDZEm7wTDQAr22WcPxNZLXlUeNEQ/DaZhOJ18bUeyAxxuFwOWarUi9jO7Qx2kiLNin9KyfCB0APE6QEAT3OEjLUA1UhwFCuR/pCiPpSSQgwlOtrTQMQ9cW6EKJe7RACXF7KerlITlGvt8kZLmfQC5YGQP5qcSrXAD5p4PbC/3XFt5a/N1ncyg6fk1wypwrdsXFlI6pPjB/pRx14RVz1MwcG72eiTL3PHIg5R6CX+plDItKtJ2oNB7Yel8gVKcDIqFYPVIAKUEhAKFcHKkAhAaFcHagAhQSEcnWgAhQSEMrVgQpQSEAoVwcqQCEBoVwdqACFBIRydaACFBIQytWBQoA/AWFOcmCYukM1AAAAAElFTkSuQmCC">
+
+	</body>
+</html>

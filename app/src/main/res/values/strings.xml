@@ -1,0 +1,39 @@
+<resources>
+    <string name="app_name">Motor control</string>
+    <string name="action_settings">Settings</string>
+    <string name="ip_server_button">IP server</string>
+    <string name="wifi_server_button">WEB server</string>
+    <string name="client_button">Remote</string>
+    <string name="no_wifi">No WIFI connected!</string>
+
+    <string-array name="baud_name_arrays">
+        <item>300 baud</item>
+        <item>1200 baud</item>
+        <item>2400 baud</item>
+        <item>4800 baud</item>
+        <item>9600 baud</item>
+        <item>19200 baud</item>
+        <item>38400 baud</item>
+        <item>576600 baud</item>
+        <item>744880 baud</item>
+        <item>115200 baud</item>
+        <item>230400 baud</item>
+        <item>250000 baud</item>
+    </string-array>
+
+    <string-array name="baud_arrays">
+        <item>300</item>
+        <item>1200</item>
+        <item>2400</item>
+        <item>4800</item>
+        <item>9600</item>
+        <item>19200</item>
+        <item>38400</item>
+        <item>576600</item>
+        <item>744880</item>
+        <item>115200</item>
+        <item>230400</item>
+        <item>250000</item>
+    </string-array>
+
+</resources>

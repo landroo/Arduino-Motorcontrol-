@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:robobunny="http://robobunny.com"
+    android:key="preference_screen" >
+
+    <PreferenceCategory
+        android:key="application_category"
+        android:title="Settings" >
+        <EditTextPreference
+            android:defaultValue="8040"
+            android:key="default_port"
+            android:summary="Default communication port."
+            android:title="Port" />
+
+        <ListPreference
+            android:key="baudrate_preference"
+            android:title="Baud rate"
+            android:entries="@array/baud_name_arrays"
+            android:summary="Communication speed."
+            android:entryValues="@array/baud_arrays"/>
+    </PreferenceCategory>
+
+</PreferenceScreen>
