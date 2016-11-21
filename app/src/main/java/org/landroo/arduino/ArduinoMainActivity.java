@@ -1,5 +1,9 @@
 package org.landroo.arduino;
-
+/*
+A simple Android project to control an equipment by arduino and motor control.
+This is a client server application. You can connect by ip socket if you have router, or wifi direct if you haven't.
+It's contain a web sever, sou you can remote control by a web browser.
+ */
 import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
