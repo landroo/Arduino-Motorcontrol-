@@ -3,6 +3,20 @@ package org.landroo.arduino;
 A simple Android project to control an equipment by arduino and motor control.
 This is a client server application. You can connect by ip socket if you have router, or wifi direct if you haven't.
 It's contain a web sever, sou you can remote control by a web browser.
+
+
+Every household contain some old electric toy and some old Android phone.
+Why we should'nt bring them a new remote controlled robot with the help of Arduino and L298N Dual Motor Controller.
+We also need two Android phone and an OTG adapter.
+
+​We need an Arduino UNO or compatible, a L298N Dual Motor Controller, two Android phone, one of the must be OTG compatible, and an OTG adapter.
+And a toy vehicle which has two motor, one for wheeling and one for throttle.
+
+
+​First you must start a the controller application.The Wifi Direct server automatically started, but if you wan to access by IP server or want to control by a Web browser, you must start the appropriate server. Then connect with the remote phone. When the connection is established the video stream start and you can control the motors.
+
+http://www.instructables.com/id/Control-DC-and-stepper-motors-with-L298N-Dual-Moto/
+
  */
 import android.app.Activity;
 import android.content.BroadcastReceiver;
